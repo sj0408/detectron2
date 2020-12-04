@@ -29,8 +29,8 @@ def setup_cfg(args):
     cfg.MODEL.RETINANET.SCORE_THRESH_TEST = args.confidence_threshold
     cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = args.confidence_threshold
     cfg.MODEL.PANOPTIC_FPN.COMBINE.INSTANCES_CONFIDENCE_THRESH = args.confidence_threshold
-    if arg.numClass:
-        cfg.MODEL.ROI_HEADS.NUM_CLASSES = arg.numClass
+    if args.numClass:
+        cfg.MODEL.ROI_HEADS.NUM_CLASSES = args.numClass
     cfg.freeze()
     return cfg
 
