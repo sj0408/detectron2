@@ -29,6 +29,8 @@ def setup_cfg(args):
     cfg.MODEL.RETINANET.SCORE_THRESH_TEST = args.confidence_threshold
     cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = args.confidence_threshold
     cfg.MODEL.PANOPTIC_FPN.COMBINE.INSTANCES_CONFIDENCE_THRESH = args.confidence_threshold
+    if arg.numClass:
+        cfg.MODEL.ROI_HEADS.NUM_CLASSES = arg.numClass
     cfg.freeze()
     return cfg
 
@@ -67,6 +69,15 @@ def get_parser():
         default=[],
         nargs=argparse.REMAINDER,
     )
+    
+    # add parser for custom dataset inference - number of classes
+    parser.add_argument(
+        "--numClass",
+        type=int,
+        default=80,
+        help="Number of Classes in dataset",
+    )
+    
     return parser
 
 
